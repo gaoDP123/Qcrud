@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <style>
+        .pagination {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 0 5px;
+            border: 1px solid cadetblue;
+            text-decoration: none;
+        }
+        .active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+<ul>
+    {% for data in data_list %}
+        <li>{{ data }}<a href="edit/45/?{{ list_condition }}">编辑</a></li>
+    {% endfor %}
+
+</ul>
+<div>
+    {{ html_list|safe }}
+
+</div>
+</body>
+</html>

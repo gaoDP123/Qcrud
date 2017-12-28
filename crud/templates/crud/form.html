@@ -1,0 +1,35 @@
+<form method="post" novalidate class="form-horizontal">
+        {% csrf_token %}
+        {% for field_dic in form %}
+            <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{ field_dic.item.field.label }}</label>
+                <div class="col-sm-10">
+                    {{ field_dic.item }}
+                    {% if field_dic.is_popup %}
+                        <a onclick="popUp('{{ field_dic.popup_url }}')">popup</a>
+                    {% endif %}
+                    {{ field_dic.item.errors.0 }}
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+        <div class="col-sm-offset-11 col-sm-1">
+            <input type="submit" value="提交" class="btn btn-primary">
+        </div>
+
+    </form>
+
+<script>
+    function popupCallback(dic) {
+        var op=document.createElement("option");
+        op.value=dic.id;
+        op.text=dic.text;
+        op.setAttribute("selected","selected");
+        document.getElementById(dic.pop_back_id).appendChild(op);
+
+    }
+    function popUp(url) {
+        var popupPage=window.open(url,url,"status=1,height:500,width:600,toolbar=0,resizeable=0");
+    }
+</script>
